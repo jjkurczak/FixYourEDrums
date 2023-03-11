@@ -1,0 +1,65 @@
+/*
+Script to properly handle the standard midi events from an Alesis Nitro Mesh edrum kit
+This handles:
+1. triggering the crash choke correctly for the standard crash1 cymbal
+2. supporting the "half open" position of the hi-hat, and setting how "open" it should be
+when activated by using a plugin parameter called "Hi-Hat Adjust"
+*/
+
+var PluginParameters = [{name:"Hi-Hat Adjust", defaultValue:4, minValue:1, maxValue:7, 
+numberOfSteps:6, unit:"articulation", type:"lin"}];
+
+var HIHAT_ARTICULATION = 4;
+
+function ParameterChanged(param, value) {
+	// handle changing the HIHAT_ARTICULATION with plugin parameter
+	// only one parameter so its always param 0
+	if (param == 0)
+	{
+		//Trace(value);
+		HIHAT_ARTICULATION = value;
+	}
+}
+
+function HandleMIDI(event)
+{
+	event.trace();
+	if (event instanceof NoteOn && event.pitch == 23)
+	{
+		Trace("---half hihat on---");
+		event.pitch = 42;
+		event.articulationID = HIHAT_ARTICULATION;
+		event.trace();
+		event.send();
+		// seems necessary to send NoteOff here rather than modify real NoteOff
+		var off = new NoteOff(event);
+		off.sendAfterMilliseconds(100);
+	}
+	else if (event instanceof NoteOff && event.pitch == 23)
+	{
+		// should just absorb this NoteOff, we already sent one above after NoteOn
+		Trace("---half hihat off---");
+	}
+	else if (event instanceof PolyPressure)
+	{
+		// handle crash choke
+		Trace("---polypressure stuff---");
+		if (event.pitch == 49 && event.value == 127)
+		{
+			var crash_choke = new NoteOn;
+			crash_choke.channel = 10;
+			crash_choke.pitch = 28;
+			crash_choke.velocity = 1;
+			//crash_choke.trace();
+			crash_choke.send();
+			var off = new NoteOff(crash_choke);
+			//off.trace();
+			off.sendAfterMilliseconds(100);
+		}
+	}
+	else
+	{
+		Trace("---normal note---");
+		event.send();
+	}
+}
