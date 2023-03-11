@@ -7,7 +7,7 @@ Thanks to everyone at logicprohelp.com who discussed how to handle cymbal choke 
 
 ## How to add the script to your MainStage concert
 
-1. Save the "alesis_nitro_mesh_fixes.pst" file from this page to your computer
+1. Download [alesis_nitro_mesh_fixes.pst](https://github.com/jjkurczak/FixYourEDrums/releases/download/v0.1/alesis_nitro_mesh_fixes.pst) to your computer
 1. Open your MainStage concert
 1. Find the channel strip containing your Drum Kit Designer plugin (it should say "Drum Kit" in the Input slot)
 1. In that same channel strip, click an empty spot in the "MIDI FX" slot to add a midi plugin and select "Scripter"
