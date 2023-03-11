@@ -1,6 +1,14 @@
 # FixYourEDrums
 Apple Scripter Plugin script to correctly map EDrums in MainStage
 
+![Alesis_nitro_mesh_fixes](https://user-images.githubusercontent.com/10360343/224507273-45cc6d05-3233-47dc-bc90-5a3a05e4da90.jpg)
+
+## Full Hi-Hat middle position support, and cymbal choke too!
+
+What's new!
+
+You can make the middle hi-hat position on your Alesis Nitro Mesh actually play a partially-open hi-hat sound, and even adjust the openness with 7 different levels! No modifications needed on the drumkit itself, works out of the box on preset 1. This script also supports the cymbal choke feature on crash 1.
+
 Do you have an Alesis Nitro Mesh but wish the Hi-Hat and Crash Choke would work out of the box with MainStage or Logic Pro? This script for the Scripter Plugin will fix both of those for you!
 
 Thanks to everyone at logicprohelp.com who discussed how to handle cymbal choke in [this thread](https://www.logicprohelp.com/forums/topic/108702-drum-kit-designer-cymbal-chokes-amp-roland-v-drums/).
@@ -16,5 +24,5 @@ Thanks to everyone at logicprohelp.com who discussed how to handle cymbal choke 
 1. Find and open the "alesis_nitro_mesh_fixes.pst" file that you just downloaded
 
 You're done! The hi-hat middle position and the cymbal choke should now be working
-- You can set how "open" the hi-hat middle position will sound by changing the "Hi-Hat Adjust" slider
+- **You can set how "open" the hi-hat middle position will sound by changing the "Hi-Hat Adjust" slider**
 - Don't forget to save your concert with these changes or you'll have to add the Scripter plugin again next time!
